@@ -1,12 +1,12 @@
-!/bin/bash
+#!/bin/bash
 
 # Script that makes symlinks between home and ~/dotfiles
 
 ## vars
 
-dir=~/dotfiles
+dir=~/repo/dotfiles
 old=~/dotfiles_old
-files=".bashrc .config/neofetch .config/sway/ .config/sakura/ .bash_profile .bashrc .gitconfig
+files=".bashrc .config/neofetch .config/sway .config/sakura .bash_profile .bashrc .gitconfig"
 
 ##
 
@@ -22,8 +22,8 @@ echo "done"
 
 # move existing dotfiles to $old
 for file in $files; do
-	echo "Moving existing dotfiles to $old
-	mv ~/$file ~/$old/
+	echo "Moving existing dotfiles to $old"
+	mv ~/$file $old
 	echo "Creating symlink to $file in home dir"
 	ln -s $dir/$file ~/$file
 done

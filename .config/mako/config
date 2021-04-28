@@ -1,0 +1,22 @@
+### FONT ###
+font=Fira Mono
+
+### TIMEOUT ###
+default-timeout=4500 #milliseconds
+### POSITION AND SIZE ##
+anchor=bottom-right
+width=350
+padding=10
+margin=10
+border-size
+
+### COLORS ###
+background-color=#5faf5fFF
+text-color=#dfefdfFF
+border-color=#76ba76
+
+### CRITERIA ###
+
+[urgency=high]
+border-color=#e31c25
+ignore-timeout=1

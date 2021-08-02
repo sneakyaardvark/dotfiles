@@ -1,0 +1,14 @@
+### WOFI CONFIG ###
+# vim: set filetype=conf
+stylesheet=/home/andrew/repo/dotfiles/.config/wofi/style.css
+show=drun
+term=foot
+lines=10
+prompt=
+hide_scroll=true
+insensitive=true #case insensitive
+location=center
+orientation=vertical
+width=25%
+
+key_expand=Shift_R

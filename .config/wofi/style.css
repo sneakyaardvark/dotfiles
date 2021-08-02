@@ -1,0 +1,18 @@
+window {
+	border: 2px solid #5faf5f;
+	background-color: transparent;
+	font-size: 14;
+}
+
+#input {
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+}
+
+#entry {
+}
+
+#entry:selected {
+	background-color: #5faf5f;
+}

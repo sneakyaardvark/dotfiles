@@ -16,3 +16,7 @@ export VISUAL=nvim
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec dbus-run-session sway
 fi
+
+if [ "$XDG_SESSION_DESKTOP" = "sway" ]; then
+	export _JAVA_AWT_WM_NONREPARENTING=1
+fi

@@ -27,6 +27,7 @@ alias poweroff='sudo poweroff'
 alias zzz='sudo zzz'
 alias ZZZ='sudo ZZZ'
 alias halt='sudo halt'
+alias reboot='sudo reboot'
 
 source /usr/share/bash-completion/bash_completion
 

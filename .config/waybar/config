@@ -93,7 +93,8 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{capacity}% / {timeTo}",
+        "format-icons": ["", "", "", "", ""]
     },
     "battery#bat0": {
         "bat": "BAT0",

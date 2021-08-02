@@ -14,11 +14,12 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term sakura
+set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $wofi wofi -c /home/andrew/repo/dotfiles/.config/wofi/config | xargs swaymsg exec --
 
 # wallpaper
 set $wallpaper ~/wallpaper/alena-aenami-lights1k1.jpg
@@ -94,7 +95,7 @@ input * {
     bindsym $mod+d exec $menu
 
     # Start launcher (special fn key)
-    bindsym $FnLaunch exec $menu
+    bindsym $FnLaunch exec $wofi
 
     # 
 
@@ -286,7 +287,6 @@ gaps inner 10
 
 # Autostart
 exec mako # check if this happens via dbus anyway?
-exec sakura
 
 # Gnome / GTK setup
 set $gnome-schema org.gnome.desktop.interface

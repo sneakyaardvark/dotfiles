@@ -13,91 +13,81 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term foot
-# Your preferred application launcher
+
+# Set terminal emulator
+set $term footclient
+
+# Application Launcher(s)
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $wofi wofi -c /home/andrew/repo/dotfiles/.config/wofi/config | xargs swaymsg exec --
+set $wofi wofi -c /home/andrew/.config/wofi/config | xargs swaymsg exec --
 
-# wallpaper
-set $wallpaper ~/wallpaper/alena-aenami-lights1k1.jpg
+# Screenshots
+# uses https://git.sr.ht/~myrovh/dotfiles/tree/master/item/dotfiles/config/sway/config.d/vars
+# Full screenshot, sent to ~/Downloads/
+set $screenshot grimshot --notify save output ~/Downloads/grim_"$(date "+%Y.%m.%d-%H.%M.%S")".png
+# Selectable screenshot, sent to ~/Downloads/
+set $screenshot_select grimshot --notify save area ~/Downloads/grim_"$(date "+%Y.%m.%d-%H.%M.%S")".png
 
-# Laptop
-set $laptop eDP-1
+# Full screenshot, sent to swappy
+set $screenshot_swappy grimshot --notify save output - | swappy -f -
+
+# Selectable screenshot, sent to swappy
+set $screenshot_select_swappy grimshot --notify save area - | swappy -f -
+
+# Color picker, sent to clipboard
+set $colour_picker grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
+
+# wallpaper - now using azote
+#set $wallpaper ~/wallpaper/0069.jpg
 
 # Lock
-set $lock swaylock -f -i $wallpaper -s fill
+#set $lock swaylock -f -i $wallpaper -s fill
+set $lock wlogout -p layer-shell -b 2 -c 200
 
 # audio controls
 set $audioRaise XF86AudioRaiseVolume
 set $audioLower XF86AudioLowerVolume
-set $audioMute XF86AudioMute
-set $audioMic XF86AudioMicMute
 
-# Special Function Keys
-set $FnSettings XF86Tools
-set $FnSearch XF86Search
-set $FnLaunch XF86LaunchA
-set $FnFiles XF86Explorer
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg $wallpaper fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs 
-#
-### Idle configuration
-exec swayidle -w \
-         timeout 300 '$lock' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep '$lock'
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+##
+## Output configuration
+##
+exec /home/andrew/.azotebg
 
-### Input configuration
-# TrackPoint
-input "2:10:TPPS/2_IBM_TrackPoint" {
-    dwt enabled
-    accel_profile "flat" # disable acceleration
-    pointer_accel 0.5 # mouse sensitivity -1 to 1
-}
-
-# TouchPad
-input "2:7:SynPS/2_Synaptics_TouchPad" {
-		dwt enabled
-		tap enabled
-	}
-
+##
+## Input configuration
+##
 input * {
 	xkb_layout us
 }
 
-### Key bindings
-#
+##
+## Key bindings
+##
 # Basics:
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    # If the Foot Server is not cooperating
+    bindsym $mod+Shift+Control+Return exec foot
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher (default)
-    bindsym $mod+d exec $menu
+    bindsym $mod+shift+d exec $menu
 
-    # Start launcher (special fn key)
-    bindsym $FnLaunch exec $wofi
+    # Start launcher (wofi)
+    bindsym $mod+d exec $wofi
 
-    # 
+    # Screenshootering
+    bindsym $mod+Mod1+p exec $screenshot
+    bindsym $mod+Shift+Mod1+p exec $screenshot_select
+    bindsym $mod+p exec $screenshot_swappy
+    bindsym $mod+Shift+p exec $screenshot_select_swappy
+    bindsym $mod+Ctrl+p exec $colour_picker
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -118,22 +108,21 @@ input * {
     for_window [window_type="menu"] floating enable
     for_window [window_role="About"] floating enable
     for_window [app_id="pavucontrol"] floating enable
-    for_window [app_id="wpa_gui"] floating enable
-
+    for_window [app_id="octoxbps-sudo"] floating enable
+    for_window [class="discord"] move container to workspace number 2
+    
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
     # Shutdown
-    bindsym $mod+Shift+End exec shutdown -h now
+    #bindsym $mod+Shift+End exec shutdown -h now
     
     # Lock
-    bindsym $mod+Control+L exec $lock
+    bindsym $mod+control+L exec $lock
 #
-# Audio:
-#
-    bindsym $audioRaise exec amixer set Master 5%+
-    bindsym $audioLower exec amixer set Master 5%-
-    bindsym $audioMute exec amixer set Master toggle
-    bindsym $audioMic exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    #bindsym $audioRaise exec amixer set Master 5%+
+    #bindsym $audioLower exec amixer set Master 5%-
+    #bindsym $audioMute exec amixer set Master toggle
+    #bindsym $audioMic exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 #
 # Moving around:
@@ -186,7 +175,7 @@ input * {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-#
+#    
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
@@ -231,16 +220,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default modr
     bindsym Return mode "default"
@@ -248,8 +237,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+
 #
-# Status Bar:
+# Status Bar
 #
 bar {
     swaybar_command waybar
@@ -269,7 +259,7 @@ set $clr_red #d75f87
 
 # set colors
 #						border		  bg		text	 indi	  childborder
-client.focused			$clr_green $clr_green $clr_fore $clr_indi $clr_green
+client.focused			$clr_fore $clr_fore $clr_back $clr_indi $clr_fore
 client.focused_inactive $clr_back $clr_back $clr_fore $clr_back $clr_back
 client.unfocused		$clr_back $clr_back $clr_fore $clr_back $clr_back
 client.urgent			$clr_red $clr_red $clr_fore $clr_red $clr_red
@@ -285,10 +275,21 @@ default_floating_border normal
 smart_gaps on
 gaps inner 10
 
+#
 # Autostart
-exec mako # check if this happens via dbus anyway?
+#
+# notifs
+exec mako
+# screen shift
+exec wlsunset -l 45.4 -L -122.5
+# terminal server
+exec foot --server
+# import dbus stuff
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+#
 # Gnome / GTK setup
+#
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
 	gsettings set $gnome-schema gtk-theme Adwaita
@@ -298,3 +299,5 @@ exec_always {
 	gsettings set $gnome-schema cursor-size 30
 }
 include /etc/sway/config.d/*
+# Load machine-specific config
+include ~/.config/sway/config.d/$(hostname)

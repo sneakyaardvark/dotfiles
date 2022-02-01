@@ -1,0 +1,10 @@
+#!/bin/bash
+Selection=true
+
+. /home/andrew/.bash_profile
+
+if [ $@ = "sway" ]; then
+	. /home/andrew/.wayland_settings
+fi
+
+exec dbus-launch $@

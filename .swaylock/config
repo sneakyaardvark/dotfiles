@@ -2,6 +2,7 @@ ignore-empty-password
 font=Fira Mono
 indicator-caps-lock
 
+color=282a2e
 indicator-radius=110
 indicator-thickness=55
 

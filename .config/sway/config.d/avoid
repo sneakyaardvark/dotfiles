@@ -1,0 +1,51 @@
+##                                    ##
+##      sway config for 'avoid'       ##
+##                                    ##
+# vim: set syntax=conf:
+
+##
+## media controls
+##
+set $audioPlay XF86AudioPlay
+set $audioNext XF86AudioNext
+set $audioPrev shift+XF86AudioNext
+
+##
+## displays
+##
+  # https://github.com/swaywm/sway/wiki#mouse-events-clicking-scrolling-arent-working-on-some-of-my-workspaces
+output DP-1 mode 1920x1080@144Hz pos 1920 0
+output DP-2 mode 1920x1080@144Hz pos 0 0
+
+# focus on main monitor
+exec swaymsg focus output DP-1
+
+# bind workspaces to monitors
+workspace 1 output DP-1
+workspace 2 output DP-2
+
+##
+## Window type specifications
+##    
+    for_window [title="^Console window"] floating enable
+    for_window [title="^Copying.*Dolphin$"] floating enable
+    for_window [app_id="yad"] floating enable
+
+##
+## Audio / Media :
+## (pipewire + pipewire-pulse)
+	bindsym $audioRaise exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+	bindsym $audioLower exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+	bindsym $audioPlay exec playerctl play-pause
+	bindsym $audioNext exec playerctl next
+	bindsym $audioPrev exec playerctl previous
+##
+## Autostart
+##
+#  sound servers
+exec {
+	pipewire
+	pipewire-pulse
+}
+
+exec flatpak run com.discordapp.Discord

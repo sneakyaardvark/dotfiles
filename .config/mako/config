@@ -2,13 +2,16 @@
 font=Fira Mono
 
 ### TIMEOUT ###
-default-timeout=4500 #milliseconds
+#default-timeout=5000
+default-timeout=4500
+ignore-timeout=1
+#milliseconds
 ### POSITION AND SIZE ##
 anchor=bottom-right
 width=350
 padding=10
 margin=10
-border-size
+border-size=3
 
 ### COLORS ###
 background-color=#5faf5fFF

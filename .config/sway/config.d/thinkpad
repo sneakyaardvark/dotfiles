@@ -20,13 +20,12 @@ set $FnFiles XF86Explorer
 ##
 ## Idle configuration
 ##
-set $swaylock swaylock -f -i $wallpaper -s fill
+set $swaylock swaylock -f -i ~/wallpaper/alena-aenami-lights1k1.jpg -s fill
 exec swayidle -w \
          timeout 300 '$swaylock' \
          timeout 600 'swaymsg "output * dpms off"' \
-         #resume 'swaymsg "output * dpms on"' \
-         before-sleep '$swaylock' \
-         after-resume 'swaymsg "output * dpms on"'
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep '$swaylock'
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -39,13 +38,13 @@ input "2:10:TPPS/2_IBM_TrackPoint" {
     dwt enabled
     accel_profile "flat" # disable acceleration
     pointer_accel 0.5 # mouse sensitivity -1 to 1
-}
+  }
 
 # TouchPad
 input "2:7:SynPS/2_Synaptics_TouchPad" {
-		dwt enabled
-		tap enabled
-	}
+    dwt enabled
+    tap enabled
+  }
 
 ##
 ## Keybindings

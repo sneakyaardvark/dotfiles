@@ -30,6 +30,7 @@ workspace 2 output DP-2
     for_window [title="^Console window"] floating enable
     for_window [title="^Copying.*Dolphin$"] floating enable
     for_window [app_id="yad"] floating enable
+    for_window [class="net-fabricmc-devlaunchinjector-Main"] floating enable
 
 ##
 ## Audio / Media :
@@ -46,6 +47,7 @@ workspace 2 output DP-2
 exec {
 	pipewire
 	pipewire-pulse
+        wireplumber
 }
 
 exec flatpak run com.discordapp.Discord

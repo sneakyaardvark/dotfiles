@@ -29,6 +29,9 @@ alias ZZZ='sudo ZZZ'
 alias halt='sudo halt'
 alias reboot='sudo reboot'
 
+# commands preceded by a space will not be recorded in bash history
+HISTCONTROL=ignorespace
+
 source /usr/share/bash-completion/bash_completion
 
 # \t time as HH:MM:SS

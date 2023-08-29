@@ -12,6 +12,18 @@ alias ll='ls --color=auto -lA'
 alias xq='xbps-query'
 alias xqr='xbps-query -R'
 
+alias yt-dlp-ubn='yt-dlp -o "%(webpage_url_basename)s.%(ext)s"'
+
+alias su-postgre='sudo -iu postgres psql'
+
+ytdlpubn () {
+ yt-dlp -o "$1 %(webpage_url_basename)s.%(ext)s" "$2"
+}
+
+mp3fix () {
+  ffmpeg -i "$1" -acodec copy "len_fix $1"
+}
+
 
 # make dir and cd into it
 mkcd () {

@@ -47,7 +47,7 @@ workspace 2 output DP-2
 exec {
 	pipewire
 	pipewire-pulse
-        wireplumber
+  wireplumber
 }
-
+exec /usr/libexec/polkit-kde-authentication-agent-1
 exec flatpak run com.discordapp.Discord

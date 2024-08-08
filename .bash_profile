@@ -5,12 +5,13 @@
 [ -f $HOME/.bash_private ] && . $HOME/.bash_private
 #exports
 
-export QT_QPA_PLATFORMTHEME=qt5ct # enable qt5ct for theming/config
+export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct # enable qt5ct for theming/config
 export GTK_THEME=Adwaita:dark
-export PATH=$HOME/.local/bin:$PATH
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$HOME/.local/bin:$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export EDITOR=vi
 export VISUAL=nvim
-export XDG_DATA_DIRS=/home/andrew/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$HOME/.nix-profile/share:${XDG_DATA_DIRS}
 
 # If running from tty1 start sway
 #if [ "$(tty)" = "/dev/tty1" ]; then

@@ -112,6 +112,7 @@ input * {
     for_window [class="discord"] move container to workspace number 2
     for_window [instance="origin.exe"] floating enable
     for_window [title="UnityEditor.*"] floating enable
+    for_window [instance="Godot_Engine" class="^(?!Godot).*$"] floating enable
     
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'

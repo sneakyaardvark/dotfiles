@@ -50,4 +50,4 @@ exec {
   wireplumber
 }
 exec /usr/libexec/polkit-kde-authentication-agent-1
-exec flatpak run com.discordapp.Discord
+exec flatpak run dev.vencord.Vesktop

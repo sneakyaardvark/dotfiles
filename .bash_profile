@@ -5,7 +5,7 @@
 [ -f $HOME/.bash_private ] && . $HOME/.bash_private
 #exports
 
-export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct # enable qt5ct for theming/config
+export QT_QPA_PLATFORMTHEME=qt5ct # qt6ct will be used automatically for Qt6 apps
 export GTK_THEME=Adwaita:dark
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$HOME/.local/bin:$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
@@ -30,3 +30,4 @@ export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/e
 export PATH="$PATH:/home/andrew/.local/share/JetBrains/Toolbox/scripts"
 
 if [ -e /home/andrew/.nix-profile/etc/profile.d/nix.sh ]; then . /home/andrew/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "$HOME/.cargo/env"

@@ -1,6 +1,7 @@
 ignore-empty-password
 font=Fira Sans
 indicator-caps-lock
+image=$XDG_DATA_HOME/.local/share/wallpaper/selected
 
 color=282a2e
 indicator-radius=110

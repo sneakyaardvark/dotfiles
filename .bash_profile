@@ -12,6 +12,7 @@ export PATH=$HOME/.local/bin:$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 export EDITOR=vi
 export VISUAL=nvim
 export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$HOME/.nix-profile/share:${XDG_DATA_DIRS}
+export XDG_DATA_HOME=$HOME/.local/share
 
 # If running from tty1 start sway
 #if [ "$(tty)" = "/dev/tty1" ]; then

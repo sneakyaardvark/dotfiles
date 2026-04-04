@@ -40,11 +40,6 @@ set $screenshot_select_swappy grimshot --notify save area - | satty --filename -
 # Color picker, sent to clipboard
 set $colour_picker grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
 
-set $wallpaper "/home/andrew/wallpaper/single/painting0.jpg"
-
-# Lock
-#set $lock swaylock -f -i $wallpaper -s fill
-
 # audio controls
 set $audioRaise XF86AudioRaiseVolume
 set $audioLower XF86AudioLowerVolume
@@ -53,7 +48,7 @@ set $audioLower XF86AudioLowerVolume
 ##
 ## Output configuration
 ##
-output * bg $wallpaper fill
+output * bg ~/.local/share/wallpaper/selected fill
 
 ##
 ## Input configuration

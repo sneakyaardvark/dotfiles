@@ -1,0 +1,12 @@
+[user]
+  email = 81195290+sneakyaardvark@users.noreply.github.com
+  name = Andrew Stanton
+[credential "https://github.com"]
+  username = sneakyaardvark
+[init]
+  defaultBranch = main
+[pull]
+  rebase = true
+[core]
+  whitespace = trailing-space,spacebefore-tab
+  autocrlf = input

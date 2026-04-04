@@ -11,6 +11,13 @@ set $audioNext XF86AudioNext
 set $audioPrev shift+XF86AudioNext
 
 ##
+## input devices
+##
+# Map tablet to output,
+# see https://wiki.archlinux.org/title/Graphics_tablet#Map_to_output
+input 1386:884:Wacom_Intuos_S_Pen map_to_output DP-1
+
+##
 ## displays
 ##
   # https://github.com/swaywm/sway/wiki#mouse-events-clicking-scrolling-arent-working-on-some-of-my-workspaces
@@ -40,6 +47,17 @@ workspace 2 output DP-2
 	bindsym $audioPlay exec playerctl play-pause
 	bindsym $audioNext exec playerctl next
 	bindsym $audioPrev exec playerctl previous
+
+##
+## control center
+##
+bindsym $mod+N exec swaync-client -t -sw
+
+##
+## wf-recorder
+##
+bindsym $mod+i exec screen-record
+
 ##
 ## Autostart
 ##
@@ -50,4 +68,5 @@ exec {
   wireplumber
 }
 exec /usr/libexec/polkit-kde-authentication-agent-1
+exec swaync
 exec flatpak run dev.vencord.Vesktop

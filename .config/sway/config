@@ -282,8 +282,6 @@ gaps inner 10
 #
 # Autostart
 #
-# notifs
-exec mako
 # screen shift
 exec wlsunset -l 45.4 -L -122.5
 # terminal server
@@ -297,6 +295,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
 	gsettings set $gnome-schema gtk-theme Adwaita
+  gsettings set $gnome-schema color-scheme prefer-dark
 	gsettings set $gnome-schema icon-theme breeze-dark
 	gsettings set $gnome-schema cursor-theme Breeze_Obsidian
 	gsettings set $gnome-schema font-name 'Fira Mono'

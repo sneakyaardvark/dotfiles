@@ -22,7 +22,7 @@ set $term footclient
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $rofi rofi -c -show drun
-set $rofi-power-menu rofi -show menu -modi power-menu:rofi-power-menu
+set $rofi-power-menu rofi -show powermenu -modi power-menu:rofi-power-menu
 
 # Screenshots
 # uses https://git.sr.ht/~myrovh/dotfiles/tree/master/item/dotfiles/config/sway/config.d/vars

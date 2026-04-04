@@ -1,5 +1,6 @@
 #!/bin/bash
 Selection=true
+LoginShell=/bin/bash --login
 
 . /home/andrew/.bash_profile
 

@@ -30,6 +30,23 @@ mkcd () {
 	mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+# https://codeberg.org/dnkl/foot/wiki#user-content-spawning-new-%20%20%20%20%20%20%20terminal-instances-in-the-current-working-directory
+osc7_cwd() {
+    local strlen=${#PWD}
+    local encoded=""
+    local pos c o
+    for (( pos=0; pos<strlen; pos++ )); do
+        c=${PWD:$pos:1}
+        case "$c" in
+            [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+            * ) printf -v o '%%%02X' "'${c}" ;;
+        esac
+        encoded+="${o}"
+    done
+    printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+}
+PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc7_cwd
+
 # xbps-install -S
 alias xin='sudo xbps-install -S'
 
@@ -62,3 +79,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 . "$HOME/.cargo/env"
+export PATH="$HOME/app/zig/0.15.2:$PATH"
+export PATH="$HOME/app/zls/0.15.1:$PATH"

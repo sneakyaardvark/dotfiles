@@ -14,17 +14,15 @@ set {
 
 for_window {
 # popup
-  [app_id="firefox" title="^Picture-in-Picture$"] $popup
+  [app_id="Firefox" title="^Picture-in-Picture$"] $popup
 	[title="(?:Open|Save) (?:File|Folder|As)" app_id="dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"] $popup
 	[title="^(File|Folder)\s*Already Exists\s*—\s*" app_id="dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"] $popup
 	[title="Confirm to replace files" app_id="dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"] $popup
 	[app_id="pavucontrol"] $popup
 
 # video
-	[app_id="org.chromium.Chromium"] $video
 	[app_id="mpv"] $video
 	[app_id="vlc"] $video
-	[app_id="Firefox"] $video
 
 # float
   [title="^Information\s*—\s*Dolphin" app_id="dolphin"] $float

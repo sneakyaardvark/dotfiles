@@ -1,0 +1,33 @@
+# vim: set syntax=conf:
+##                                    ##
+##      sway config for 'thinkpad'    ##
+##                                    ##
+set $fnsettings xf86tools
+set $fnsearch xf86search
+set $fnlaunch xf86launcha
+set $fnfiles xf86explorer
+
+set $swaylock swaylock -f -i $xdg_data_home/wallpaper/selected -s fill
+exec swayidle -w \
+         timeout 300 '$swaylock' \
+         timeout 600 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep '$swaylock'
+# this will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. it will also lock your screen before your computer goes to sleep.
+
+input "2:10:tpps/2_ibm_trackpoint" {
+    dwt enabled
+    accel_profile "flat" # disable acceleration
+    pointer_accel 0.5 # mouse sensitivity -1 to 1
+  }
+
+input "2:7:synps/2_synaptics_touchpad" {
+    dwt enabled
+    tap enabled
+  }
+
+# start launcher (special fn key)
+bindsym $fnlaunch exec $wofi
+

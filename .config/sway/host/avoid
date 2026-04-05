@@ -1,0 +1,24 @@
+# vim: set syntax=swayconfig
+##                                    ##
+##      sway config for 'avoid'       ##
+##                                    ##
+# see https://wiki.archlinux.org/title/Graphics_tablet#Map_to_output
+input 1386:884:Wacom_Intuos_S_Pen map_to_output DP-1
+
+output DP-1 mode 1920x1080@144Hz pos 1920 0
+output DP-2 mode 1920x1080@144Hz pos 0 0
+output * color_profile icc ~/.config/sway/icc/asus_vg248qe_svet.icc
+exec swaymsg focus output DP-1
+
+workspace 1 output DP-1
+workspace 2 output DP-2
+
+assign {
+  [app_id="vesktop"] workspace number 2
+}
+
+exec {
+  firefox
+  flatpak run dev.vencord.Vesktop
+}
+

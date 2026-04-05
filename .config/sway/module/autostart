@@ -1,0 +1,13 @@
+# vim: set syntax=swayconfig
+##           ##
+## Autostart ##
+##           ##
+bar swaybar_command waybar
+exec {
+  wlsunset -l 45.4 -L -122.5
+  foot --server
+  dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+  pipewire
+  /usr/libexec/polkit-kde-authentication-agent-1
+  swaync
+}

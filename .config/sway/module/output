@@ -1,0 +1,6 @@
+# vim: set syntax=swayconfig
+##                      ##
+## Output configuration ##
+##                      ##
+output * bg ~/.local/share/wallpaper/selected fill
+

@@ -1,0 +1,8 @@
+# vim: set syntax=swayconfig
+##
+## Input configuration
+##
+input type:keyboard xkb_numlock enabled
+input * {
+	xkb_layout us
+}

@@ -1,0 +1,41 @@
+# vim: set syntax=swayconfig
+##       ##
+## Theme ##
+##       ##
+
+set $clr_high #6791c9
+set $clr_indi #e4e6e7
+set $clr_back #0c0e0f
+set $clr_fore #edeff0
+set $clr_urge #e8646a
+
+set $clr_green #78b892
+set $clr_red #df5b61
+
+#						border		  bg		text	 indi	  childborder
+client.focused			$clr_fore $clr_fore $clr_back $clr_indi $clr_fore
+client.focused_inactive $clr_back $clr_back $clr_fore $clr_back $clr_back
+client.unfocused		$clr_back $clr_back $clr_fore $clr_back $clr_back
+client.urgent			$clr_red $clr_red $clr_fore $clr_red $clr_red
+
+
+seat seat0 xcursor_theme Breeze_Obsidian 30
+font pango:Fira Sans 11
+
+default_border pixel 2
+default_floating_border normal
+
+smart_gaps on
+gaps inner 10
+
+#
+# Gnome / GTK setup
+#
+exec gsettings set org.gnome.desktop.interface {
+  gtk-theme Adwaita
+  color-scheme prefer-dark
+	icon-theme breeze-dark
+	cursor-theme Breeze_Obsidian
+	font-name 'Fira Sans'
+	cursor-size 30
+}

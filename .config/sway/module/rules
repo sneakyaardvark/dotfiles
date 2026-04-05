@@ -1,0 +1,46 @@
+# vim: set syntax=swayconfig
+##              ##
+## Window Rules ##
+##              ##
+# Many courtesy of: 
+# https://gitlab.com/that1communist/dotfiles/-/blob/master/.config/sway/modules/win-rules
+
+set {
+  $popup floating enable; sticky enable
+  $float floating enable
+  $video inhibit_idle fullscreen; border none
+  $important inhibit_idle open; floating enable
+}
+
+for_window {
+# popup
+  [app_id="firefox" title="^Picture-in-Picture$"] $popup
+	[title="(?:Open|Save) (?:File|Folder|As)" app_id="dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"] $popup
+	[title="^(File|Folder)\s*Already Exists\s*—\s*" app_id="dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"] $popup
+	[title="Confirm to replace files" app_id="dolphin|org.kde.ark|pcmanfm|pcmanfm-qt"] $popup
+	[app_id="pavucontrol"] $popup
+
+# video
+	[app_id="org.chromium.Chromium"] $video
+	[app_id="mpv"] $video
+	[app_id="vlc"] $video
+	[app_id="Firefox"] $video
+
+# float
+  [title="^Information\s*—\s*Dolphin" app_id="dolphin"] $float
+	[title="^Loading archive" app_id="org.kde.ark"] $float
+  [window_role="pop-up,task_dialog,About"] $float
+	[window_type="dialog"] $float 
+	[window_type="utility"] $float 
+	[window_type="toolbar"] $float
+	[window_type="splash"] $float
+	[window_type="menu"] $float
+	[window_type="dropdown_menu"] $float
+	[window_type="popup_menu"] $float
+	[window_type="tooltip"] $float
+	[window_type="notification"] $float
+  [app_id="yad"] $float
+
+# other
+  [urgent=latest] focus
+}
